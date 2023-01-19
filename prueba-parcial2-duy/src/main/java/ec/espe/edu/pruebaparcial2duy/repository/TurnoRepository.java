@@ -9,6 +9,6 @@ public interface TurnoRepository extends CrudRepository<Turno, String> {
     public Turno findByCedulaClienteAndNombreCliente(String cedulaCliente, String nombreCliente);
     public Turno findByNumeroTurno(Integer numeroTurno);
     public Turno findByCedulaClienteAndNumeroTurnoAndCalifacacion(String cedulaCliente, Integer numeroTurno, Integer calificacion);
-    public void updateByNumeroTurnoAndCodigoUsuarioEjectutivo(Turno turno, String cedulaCliente, String codigoUsuarioEjecutivo);
+    public Turno findByCedulaClienteAndCodigoUsuarioEjecutivo(String cedulaCliente, String codigoUsuarioEjecutivo);
     
 }

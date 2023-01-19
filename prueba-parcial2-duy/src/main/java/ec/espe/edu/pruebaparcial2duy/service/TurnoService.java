@@ -19,15 +19,34 @@ public class TurnoService {
         return turnoRepository.findByCedulaClienteAndNombreCliente(cedulaCliente, nombreCliente);
     }
 
-    public Turno findByNumeroTurno(Integer numeroTurno) {
+    public Turno registrarFinAtencion(Integer numeroTurno) {
         Turno turno = turnoRepository.findByNumeroTurno(numeroTurno);
         Date fechaYHoraActual = new Date();
         turno.setFinAtencion(fechaYHoraActual);
         return turno;
     }
 
+    public Turno findByNumeroTurno(Integer numeroTurno) {
+        return this.turnoRepository.findByNumeroTurno(numeroTurno);
+    }
+
+    public Turno calificacion(String cedulaCliente, Integer numeroTurno, Integer calificacion) {
+        Turno turno = turnoRepository.findByNumeroTurno(numeroTurno);
+        turno.setCalificacion(calificacion);
+        try{
+            this.turnoRepository.save(turno);
+        } catch (Exception e){
+            throw new RuntimeException();
+        }
+        return turno;
+    }
+
     public Turno findByCedulaClienteAndNumeroTurnoAndCalifacacion(String cedulaCliente, Integer numeroTurno, Integer calificacion) {
         return turnoRepository.findByCedulaClienteAndNumeroTurnoAndCalifacacion(cedulaCliente, numeroTurno, calificacion);
+    }
+
+    public Turno findByCedulaClienteAndCodigoUsuarioEjecutivo(String cedulaCliente, String codigoUsuarioEjecutivo) {
+        return turnoRepository.findByCedulaClienteAndCodigoUsuarioEjecutivo(cedulaCliente, codigoUsuarioEjecutivo);
     }
 
     @Transactional
